@@ -1,0 +1,128 @@
+import dash
+import dash_core_components as dcc
+import dash_html_components as html
+import plotly.express as px
+
+import pandas as pd
+
+from datetime import date, datetime
+from dash.dependencies import Input, Output
+
+
+external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+
+server = app.server
+
+# ---------- Import and clean data (importing csv into pandas)
+df = pd.read_csv('./user_activity_raw_0425.csv')
+
+df.index = pd.to_datetime(df['date_validate'])
+# print(df)
+
+# print(df.user_group.unique())
+
+def make_dict_radio_item(user_group):
+    res = [dict({
+        "label": "all",
+        "value": "all"
+    })]
+    
+    for u in user_group:
+        res.append(dict({
+            "label": u,
+            "value": u
+        }))
+        
+    return res
+
+
+user_group = df.user_group.unique()
+opts = make_dict_radio_item(user_group)
+
+email_individual = df.email.unique()
+opts_email = make_dict_radio_item(email_individual)
+
+# ------------------------------------------------------------------------------
+# App layout
+app.layout = html.Div([
+    
+    html.H3('USER ACTIVITY ANALYSIS'),
+    html.Div(className="row",
+             children=[
+                html.Div(className='three columns div-user-controls',children=[
+                        html.H5('User group'),
+                        dcc.RadioItems(
+                            id= "user_group",
+                            options=opts,
+                            value= opts[0]["value"]
+                        ),
+                        html.H5('User email'),
+                        dcc.Dropdown(
+                            id="email_dropdown",
+                            options=opts_email,
+                            value = "kokleong.ong@me.com", 
+                            multi = True, 
+                            
+                        ),
+                        html.H5('Period of time'),
+                        dcc.DatePickerRange(
+                            id='my-date-picker-range',
+                            start_date= date(2020,1,1),
+                            end_date= date(2021,6,1),
+                            display_format='DD-MM-YYYY',
+                            end_date_placeholder_text="Return"
+                        )
+                     ]),
+                html.Div(className='nine columns div-for-charts bg-grey', children=[
+                    dcc.Graph(
+                            id='user_activity'
+                        )
+                ])
+             ]
+            )
+    
+])
+
+# ------------------------------------------------------------------------------
+# Connect the Plotly graphs with Dash Components
+@app.callback(
+    Output(component_id='user_activity', component_property='figure'),
+    [Input(component_id='my-date-picker-range', component_property='start_date'),
+     Input(component_id='my-date-picker-range', component_property='end_date'),
+     Input(component_id='user_group', component_property='value'),
+     Input(component_id='email_dropdown', component_property='value')
+     ]
+    )
+def update_data(start_date, end_date, group_value, email_value):
+    print("Start date: {}, End date: {}".format(start_date,end_date))    
+    df_new = df.sort_index().loc[start_date:end_date]
+    
+    user_group_filter = []
+    if group_value != 'all':
+        user_group_filter = [group_value]
+        df_new = df_new[df_new["user_group"].isin(user_group_filter)]
+    
+    if email_value != 'all':
+        email_filter = [email_value]
+        df_new = df_new[df_new["email"].isin(email_filter)]
+
+    if df_new.empty:
+        
+        return dash.no_update
+        
+# Plotly Express           
+    fig = px.scatter(df_new, x="date_validate", y="time_validate", color='user_activity', hover_name="email", height=500, width=1000)
+    
+
+    return fig
+
+
+#------------------------------------------------------------------
+if __name__ == '__main__':
+    app.run_server(debug=True, use_reloader=False) #, dev_tools_ui=False) # add , use_reloader=False)
+
+# host = '0.0.0.0', port = 8080, 
+# plotly size: https://plotly.com/python/setting-graph-size/#what-about-dash
+# plotly hover: https://plotly.com/python/hover-text-and-formatting/
