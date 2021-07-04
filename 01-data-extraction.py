@@ -20,13 +20,13 @@ from csv import DictWriter
 
 # server = 'myserver,port' # to specify an alternate port
 
-server = 'assc-kl-gh.database.windows.net'
+server = 'MS_SQL_SERVER_NAME'
 
-database = 'ltu-assc-gh-db'
+database = 'DATABASE_NAME'
 
-username = 'analytics'
+username = 'USERNAME'
 
-password = 'internship_2021'
+password = 'USERNAME_PASSWORD'
 
 cnxn = pyodbc.connect(
 
@@ -136,7 +136,7 @@ field_name = ['run_datetime','exec_time']
 
  
 
-with open('mybabynow_log.csv','a') as f_object:
+with open('dataset.csv','a') as f_object:
 
     DictWriter_object = DictWriter(f_object,fieldnames=field_name)
 
