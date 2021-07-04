@@ -9,10 +9,10 @@ from csv import DictWriter
 # Some other example server values are
 # server = 'localhost\sqlexpress' # for a named instance
 # server = 'myserver,port' # to specify an alternate port
-server = 'assc-kl-gh.database.windows.net'
-database = 'ltu-assc-gh-db'
-username = 'analytics'
-password = 'internship_2021'
+server = 'MSSQL_SERVER_NAME'
+database = 'DATABASE_NAME'
+username = 'USERNAME'
+password = 'USER_PASS'
 cnxn = pyodbc.connect(
     'DRIVER={ODBC Driver 17 for SQL Server};SERVER=' + server + ';DATABASE=' + database + ';UID=' + username + ';PWD=' + password)
 cursor = cnxn.cursor()
@@ -64,7 +64,7 @@ _dict_exec_time = {
 # Create the CSV Consturctor, change here if you want to log more things
 field_name = ['run_datetime','exec_time']
 
-with open('mybabynow_log.csv','a') as f_object:
+with open('data_usergroup.csv','a') as f_object:
     DictWriter_object = DictWriter(f_object,fieldnames=field_name)
     DictWriter_object.writerow(_dict_exec_time)
     f_object.close()
