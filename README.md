@@ -12,9 +12,9 @@ The project aimed to support decision-makers on define a suitable 'session' by a
 
 2. [Data Cleaning](https://github.com/daoddv/user-activity-analytics/blob/master/02-data-cleaning/02-data-cleaning.ipynb)
 
-3. [The Overview of User Activity](https://github.com/daoddv/user-activity-analytics/blob/master/03-user-activity-overview/app.py)
+3. [The Overview of User Activity](https://github.com/daoddv/user-activity-analytics/blob/master/03-user-activity-overview/app.py)  
 Web viz version [click here](https://github-user-activity-overview.herokuapp.com/)  
-4. [User-to-User Analysis](https://github.com/daoddv/user-activity-analytics/blob/master/04-user-to-user-analysis/emailcomparison.py)
+4. [User-to-User Analysis](https://github.com/daoddv/user-activity-analytics/blob/master/04-user-to-user-analysis/emailcomparison.py)  
 
 ### Visualization 
 - Visualization Selection
