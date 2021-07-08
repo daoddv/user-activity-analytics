@@ -10,7 +10,7 @@ The project aimed to support decision-makers on define a suitable 'session' by a
 ## Table of contents  
 1. [Data collection](https://github.com/daoddv/user-activity-analytics/blob/master/01-data-collection/01-data-extraction.py)
 
-2. Data Cleaning
+2. [Data Cleaning](https://github.com/daoddv/user-activity-analytics/blob/master/02-data-cleaning/02-data-cleaning.ipynb)
 
 3. [The Overview of User Activity](https://github.com/daoddv/user-activity-analytics/blob/master/03-user-activity-overview/app.py)
 
