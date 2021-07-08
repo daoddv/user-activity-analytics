@@ -14,11 +14,12 @@ The project aimed to support decision-makers on define a suitable 'session' by a
 
 3. [The Overview of User Activity](https://github.com/daoddv/user-activity-analytics/blob/master/03-user-activity-overview/app.py)  
 [Click here](https://github-user-activity-overview.herokuapp.com/) for Visualization Output 
-![image](https://github.com/daoddv/user-activity-analytics/blob/master/03-user-activity-overview/user-activity-analysis-overview.png?raw=true)
 
 4. [User-to-User Analysis](https://github.com/daoddv/user-activity-analytics/blob/master/04-user-to-user-analysis/emailcomparison.py)  
 [Click here](https://github-user-to-user.herokuapp.com/) for Visualization Output  
 ### Visualization 
 - Visualization Selection
 - Interactive Features
-- Publish & Share using Heroku
+- Publish & Share using Heroku  
+
+![image](https://github.com/daoddv/user-activity-analytics/blob/master/03-user-activity-overview/user-activity-analysis-overview.png?raw=true)
