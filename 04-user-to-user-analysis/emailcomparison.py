@@ -18,7 +18,7 @@ server = app.server
 
 # ------------------------------------------------------------------------------
 # Import data
-df = pd.read_csv('./user_activity.csv')
+df = pd.read_csv('./user_activity_clean.csv')
 
 df.index = pd.to_datetime(df['date_validate'])
 # print(df)
