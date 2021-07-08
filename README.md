@@ -23,4 +23,5 @@ The project aimed to support decision-makers on define a suitable 'session' by a
 - Interactive Features
 - Publish & Share using Heroku  
 
+### Screenshot of the visualization
 ![image](https://github.com/daoddv/user-activity-analytics/blob/master/03-user-activity-overview/user-activity-analysis-overview.png?raw=true)
